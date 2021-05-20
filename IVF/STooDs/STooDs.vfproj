@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectCreator="Intel Fortran" Keyword="Console Application" Version="11.0" ProjectIdGuid="{8FF928DE-C394-4AFA-8260-8588B1692D43}">
+	<Platforms>
+		<Platform Name="Win32"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="$(DMSL_PATH)/Debug" Interfaces="true" WarnInterfaces="true" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" SubSystem="subSystemConsole" StackReserveSize="999000000" AdditionalDependencies="$(DMSL_PATH)\Debug\DMSL_IVF_STATIX_PLAIN.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="$(DMSL_PATH)/Release"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" SubSystem="subSystemConsole" StackReserveSize="999000000" AdditionalDependencies="$(DMSL_PATH)\Release\DMSL_IVF_STATIX_PLAIN.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\..\..\BMSL\src\Distribution_tools.f90"/>
+		<File RelativePath="..\..\..\BMSL\src\EmpiricalStats_tools.f90"/>
+		<File RelativePath="..\..\..\BMSL\src\Geodesy_tools.f90"/>
+		<File RelativePath="..\..\src\Main.f90"/>
+		<File RelativePath="..\..\..\BMSL\src\MultivariateDistribution_tools.f90"/>
+		<File RelativePath="..\..\src\STOODS_formulas.f90"/>
+		<File RelativePath="..\..\src\STOODS_inference.f90"/>
+		<File RelativePath="..\..\src\STOODS_mcmc.f90"/>
+		<File RelativePath="..\..\src\STOODS_types.f90"/>
+		<File RelativePath="..\..\..\BaM\src\Models\TextFile_model.f90"/></Filter></Files>
+	<Globals/></VisualStudioProject>
