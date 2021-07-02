@@ -1,0 +1,96 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+
+
+\title{STooDs configuration files}
+
+
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Introduction}
+	
+	The configuration files aim at specifying the key ingredients of a STooDs case study:
+	\begin{enumerate}
+		\item A \textit{dataset} containing values taken by one of several predictand variables Y varying in space, time or other dimensions, along with the values taken by potential covariates X (aka predictors).
+		\item A \textit{model} making assumptions on the probabilistic mechanism that generated the data. Typically, a STooDs model can be schematized as follows: 
+			\begin{enumerate}
+				\item each variable in the dataset follows a distribution.
+				\item the parameters of this distribution may vary in space, time or other dimensions.
+				\item this variability is specified by formulas that combine parameters, covariates and processes.
+			\end{enumerate}
+		\item The \textit{prior distribution} specified for each parameter (if any).
+		\item The \textit{hyperdistribution} specified for each process (if any).
+		\item the properties of the \textit{MCMC sampler} used to explore the posterior distribution associated with the model.		
+	\end{enumerate}
+	
+	Typical configuration files can be found in the folder 'Examples'.
+	
+	\section{Dataset configuration file}
+		
+	The data file should be structured as follows:
+		
+	\begin{enumerate}
+		\item (compulsory) A single column containing all data values for the predictand Y.
+		\item (compulsory) A single column containing the variable index.  If there is a single variable, the whole column should be equal to 1. If there are K variables, integers 1...K should be used to indicate the variable associated with each row.
+		\item (optional) One or several columns containing the covariates values X.
+		\item (optional) One or several columns containing the dimension indices values. For instance, if 'time' and 'space' dimensions are used, a first column should contain the time step and a second column the site number associated with each row. The names of these columns should correspond to (or at least contain) the names of the dimensions.
+		\item (optional) A single column containing the censoring type of the data. 0 corresponds to interval censoring, any negative number corresponds to a 'less than' censoring (true value is smaller than Y[i]), any positive number corresponds to 'more than' censoring (true value is larger than Y[i]).
+		\item (optional) A single column containing the width of the censoring interval for each data. True value is supposed to be in Y[i]+/- width[i] width (0 thus leads to no censoring)
+	\end{enumerate}
+	
+	The dataset configuration specifies how the data file should be interpreted and it contains the following lines:
+		
+	\begin{enumerate}
+		\item (string) A descriptive name for the dataset.
+		\item (string) The file where the dataset is stored. It is recommended to use quotes and to write the full path to the data file.
+		\item (integer) The number of header lines in the data file.
+		\item (integer) The number of rows in the data file (excluding header lines).
+		\item (integer) The number of columns in the data file
+		\item (integer) The column containing the values of the predictand.
+		\item (integer) The column containing the variable index.
+		\item (integer) The columns containing the values of the covariates (comma-separated if several covariates, 0 if no covariate).
+		\item (integer) The columns containing the dimension index (comma-separated if several dimensions, 0 if no dimension is used).
+		\item (integer) The column containing the censoring type (0 for no censoring).
+		\item (integer) The column containing the censoring interval width when interval censoring is used (0 if not used).
+	\end{enumerate}
+	
+	\section{Model configuration file}
+	
+	The model configuration file should be named 'model.config' and it contains the following lines:
+	
+	\begin{enumerate}
+		\item (string) A descriptive name for the model.
+		\item (integer) The number of variables nVar.
+		\item (string) The name of each variable (size nVar, comma-separated).
+		\item  (string) The parent distribution of each variable (size nVar, comma-separated).
+		\item (integer) The number of parameters for each parent distribution (size nVar, comma-separated).
+		\item (string) The name of each parent parameter (size sum(nParentPar), comma-separated).
+		\item (integer) The number of covariates nCov.
+		\item (string) The name of each covariate (size nCov, comma-separated).
+		\item (integer) The number of model parameters nPar.
+		\item (string) The name of each model parameter (size nPar, comma-separated).
+		\item (string) The configuration file for model parameters (priors)
+		\item (integer) The number of dimensions nDim.
+		\item (string) The configuration file for each dimension (size nDim, comma-separated).
+		\item (integer) The number of processes nPro.
+		\item (string) The name of each process (size nPro, comma-separated).
+		\item (string) The configuration file for each process (size nPro, comma-separated).
+		\item ...
+		\item (string) The formula for deriving the last parent parameter from model parameters, processes and covariates. 
+		\item (string) The dataset configuration file.
+	\end{enumerate}
+		
+	\section{Parameter configuration file}
+	
+	\section{Dimension and process configuration files}
+	
+	\subsection{Dimension}
+	
+	\subsection{Process}
+	
+	\section{MCMC configuration file}
+	
+\end{document}
