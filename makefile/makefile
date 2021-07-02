@@ -20,7 +20,6 @@ DMSL = \
 	$(DMSL_DIR)types_dmsl_kit.f90              \
 	$(DMSL_DIR)utilities_dmsl_kit.f90          \
 	$(DMSL_DIR)uniran1_dmsl_mod.f90            \
-	$(DMSL_DIR)uniran1_parallel_dmsl_mod.f90   \
 	$(DMSL_DIR)linalg_dmsl_kit.f90             \
 	$(DMSL_DIR)numerix_dmsl_kit.f90
 
