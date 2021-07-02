@@ -32,56 +32,57 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="../../../BMSL/src/Distribution_tools.f90">
-			<Option weight="22" />
+			<Option weight="6" />
 		</Unit>
 		<Unit filename="../../../BMSL/src/EmpiricalStats_tools.f90">
-			<Option weight="20" />
+			<Option weight="5" />
 		</Unit>
 		<Unit filename="../../../BMSL/src/Geodesy_tools.f90">
-			<Option weight="20" />
+			<Option weight="1" />
 		</Unit>
 		<Unit filename="../../../BMSL/src/MultivariateDistribution_tools.f90">
-			<Option weight="23" />
+			<Option weight="5" />
 		</Unit>
 		<Unit filename="../../../BaM/src/Models/TextFile_model.f90">
-			<Option weight="51" />
+			<Option weight="3" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/kinds_dmsl_kit.f90">
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/linalg_dmsl_kit.f90">
-			<Option weight="5" />
+			<Option weight="3" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/numerix_dmsl_kit.f90">
-			<Option weight="6" />
+			<Option weight="4" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/types_dmsl_kit.f90">
 			<Option weight="1" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/uniran1_dmsl_mod.f90">
-			<Option weight="3" />
-		</Unit>
-		<Unit filename="../../../miniDMSL/src/uniran1_parallel_dmsl_mod.f90">
-			<Option weight="4" />
+			<Option weight="1" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/utilities_dmsl_kit.f90">
 			<Option weight="2" />
 		</Unit>
 		<Unit filename="../../src/Main.f90">
-			<Option weight="100" />
+			<Option weight="11" />
 		</Unit>
 		<Unit filename="../../src/STOODS_formulas.f90">
-			<Option weight="97" />
+			<Option weight="8" />
 		</Unit>
 		<Unit filename="../../src/STOODS_inference.f90">
-			<Option weight="98" />
+			<Option weight="9" />
 		</Unit>
 		<Unit filename="../../src/STOODS_mcmc.f90">
-			<Option weight="99" />
+			<Option weight="10" />
 		</Unit>
 		<Unit filename="../../src/STOODS_types.f90">
-			<Option weight="95" />
+			<Option weight="7" />
 		</Unit>
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
