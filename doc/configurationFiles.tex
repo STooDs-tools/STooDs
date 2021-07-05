@@ -1,4 +1,5 @@
 \documentclass[a4paper]{article}
+\usepackage[right=50pt,left=50pt,top=50pt]{geometry}
 \usepackage{amsmath}
 
 
@@ -14,34 +15,34 @@
 	
 	The configuration files aim at specifying the key ingredients of a STooDs case study:
 	\begin{enumerate}
-		\item A \textit{dataset} containing values taken by one of several predictand variables Y varying in space, time or other dimensions, along with the values taken by potential covariates X (aka predictors).
-		\item A \textit{model} making assumptions on the probabilistic mechanism that generated the data. Typically, a STooDs model can be schematized as follows: 
+		\item A \textbf{dataset} containing values taken by one or several predictand variables $\boldsymbol{Y}$ varying in space, time or other dimensions, along with the values taken by potential covariates $\boldsymbol{X}$ (aka predictors).
+		\item A \textbf{model} making assumptions on the probabilistic mechanism that generated the data. Typically, a STooDs model can be schematized as follows: 
 			\begin{enumerate}
 				\item each variable in the dataset follows a distribution.
 				\item the parameters of this distribution may vary in space, time or other dimensions.
 				\item this variability is specified by formulas that combine parameters, covariates and processes.
 			\end{enumerate}
-		\item The \textit{prior distribution} specified for each parameter (if any).
-		\item The \textit{hyperdistribution} specified for each process (if any).
-		\item the properties of the \textit{MCMC sampler} used to explore the posterior distribution associated with the model.		
+		\item The \textbf{prior distribution} specified for each parameter (if any).
+		\item The \textbf{hyperdistribution} specified for each process (if any).
+		\item the properties of the \textbf{MCMC sampler} used to explore the posterior distribution associated with the model and the dataset.		
 	\end{enumerate}
 	
-	Typical configuration files can be found in the folder 'Examples'.
+	Typical configuration files can be found in the folder 'Examples'. For a given case study, \textbf{all configuration files} should be located in the same \textbf{workspace} folder. \textbf{Data files}, however, can be stored anywhere on the computer. Such data files include the file containing the $\boldsymbol{X}$/$\boldsymbol{Y}$ dataset (point 1. above) and additional files describing the used dimensions (e.g. location of stations for space, years for time, etc.).
 	
-	\section{Dataset configuration file}
+	\section{Data file and dataset configuration file}
 		
 	The data file should be structured as follows:
 		
 	\begin{enumerate}
-		\item (compulsory) A single column containing all data values for the predictand Y.
+		\item (compulsory) A single column containing all data values for the predictand $\boldsymbol{Y}$.
 		\item (compulsory) A single column containing the variable index.  If there is a single variable, the whole column should be equal to 1. If there are K variables, integers 1...K should be used to indicate the variable associated with each row.
-		\item (optional) One or several columns containing the covariates values X.
-		\item (optional) One or several columns containing the dimension indices values. For instance, if 'time' and 'space' dimensions are used, a first column should contain the time step and a second column the site number associated with each row. The names of these columns should correspond to (or at least contain) the names of the dimensions.
+		\item (optional) One or several columns containing the covariates values $\boldsymbol{X}$.
+		\item (optional) One or several columns containing the dimension indices. For instance, if 'time' and 'space' dimensions are used, a first column should contain the time step and a second column the site number associated with each row. The names of these columns should correspond to (or at least contain) the names of the dimensions.
 		\item (optional) A single column containing the censoring type of the data. 0 corresponds to interval censoring, any negative number corresponds to a 'less than' censoring (true value is smaller than Y[i]), any positive number corresponds to 'more than' censoring (true value is larger than Y[i]).
-		\item (optional) A single column containing the width of the censoring interval for each data. True value is supposed to be in Y[i]+/- width[i] width (0 thus leads to no censoring)
+		\item (optional) A single column containing the width of the censoring interval for each data. True value is supposed to be in Y[i]+/- width[i] (0 thus leads to no censoring)
 	\end{enumerate}
 	
-	The dataset configuration specifies how the data file should be interpreted and it contains the following lines:
+	The dataset configuration file specifies how the data file should be interpreted and it contains the following lines:
 		
 	\begin{enumerate}
 		\item (string) A descriptive name for the dataset.
@@ -49,10 +50,10 @@
 		\item (integer) The number of header lines in the data file.
 		\item (integer) The number of rows in the data file (excluding header lines).
 		\item (integer) The number of columns in the data file
-		\item (integer) The column containing the values of the predictand.
+		\item (integer) The column containing the values of the predictand $\boldsymbol{Y}$.
 		\item (integer) The column containing the variable index.
-		\item (integer) The columns containing the values of the covariates (comma-separated if several covariates, 0 if no covariate).
-		\item (integer) The columns containing the dimension index (comma-separated if several dimensions, 0 if no dimension is used).
+		\item (integer) The columns containing the values of the covariates $\boldsymbol{X}$ (comma-separated if several covariates, 0 if no covariate).
+		\item (integer) The columns containing the dimension indices (comma-separated if several dimensions, 0 if no dimension is used).
 		\item (integer) The column containing the censoring type (0 for no censoring).
 		\item (integer) The column containing the censoring interval width when interval censoring is used (0 if not used).
 	\end{enumerate}
@@ -65,32 +66,194 @@
 		\item (string) A descriptive name for the model.
 		\item (integer) The number of variables nVar.
 		\item (string) The name of each variable (size nVar, comma-separated).
-		\item  (string) The parent distribution of each variable (size nVar, comma-separated).
+		\item  (string) The parent distribution of each variable (size nVar, comma-separated). See section \ref{distributions} for a list of available distributions.
 		\item (integer) The number of parameters for each parent distribution (size nVar, comma-separated).
 		\item (string) The name of each parent parameter (size sum(nParentPar), comma-separated).
 		\item (integer) The number of covariates nCov.
 		\item (string) The name of each covariate (size nCov, comma-separated).
 		\item (integer) The number of model parameters nPar.
 		\item (string) The name of each model parameter (size nPar, comma-separated).
-		\item (string) The configuration file for model parameters (priors)
+		\item (string) The configuration file for model parameters (priors).
 		\item (integer) The number of dimensions nDim.
 		\item (string) The configuration file for each dimension (size nDim, comma-separated).
 		\item (integer) The number of processes nPro.
 		\item (string) The name of each process (size nPro, comma-separated).
 		\item (string) The configuration file for each process (size nPro, comma-separated).
+		\item (string) The formula for deriving the first parent parameter from model parameters, processes and covariates. 
 		\item ...
 		\item (string) The formula for deriving the last parent parameter from model parameters, processes and covariates. 
 		\item (string) The dataset configuration file.
 	\end{enumerate}
 		
-	\section{Parameter configuration file}
+	\section{Parameter configuration file}  \label{config_par}
 	
+	The parameter configuration file contains the specifications for the model parameters declared in lines 9-11 of the previous model configuration file. For each parameter, a block of 4 lines needs to be specified:
+	
+	\begin{enumerate}
+		\item (string) parameter name. Make sure that the name is consistent with the ones declared in line 10 of the model configuration file.
+		\item (real) initial guess (will be used as a starting point for MCMC sampling). Make sure this starting point does not lead to a zero prior or likelihood, otherwise MCMC sampling won't start.
+		\item (string) prior distribution. See section \ref{distributions} for a list of available distributions.
+		\item (real) prior parameters, comma-separated.		
+	\end{enumerate}
+	 
+	 Make sure that the parameters appear in the same order as declared in line 10 of the model configuration file.
+			
 	\section{Dimension and process configuration files}
 	
-	\subsection{Dimension}
+	A process can be viewed as a parameter varying along a given dimension. Note that several processes can be defined along the same dimension (e.g. several spatial processes). Dimension and process configuration files are therefore both needed as soon as at least one process is used in the model.
 	
-	\subsection{Process}
+	\subsection{Dimension data and configuration files}
+	
+	There should be as many dimension data and configuration files as there are dimensions. A dimension data file should be structured as follows: 
+	
+	\begin{enumerate}
+		\item (compulsory) One or several columns containing the coordinates of points in the dimension. For space this could be 2 columns containing the geographical coordinates of stations; for time this could be one column containing the years associated with time steps. 
+		\item (optional) One or several columns containing covariates that vary in this dimension only. For space this could be elevation, distance to sea, etc. For time this could be a climate index.
+	\end{enumerate}
+
+	The dimension configuration file then specifies how this data file should be interpreted along with other properties of the dimension:
+	
+	\begin{enumerate}
+		\item (string) A descriptive name for the dimension.
+		\item (string) The file where the dimension dataset is stored. It is recommended to use quotes and to write the full path to the data file.
+		\item (integer) The number of header lines in the dimension data file.
+		\item (integer) The number of rows in the dimension data file (excluding header lines).
+		\item (integer) The number of columns in the dimension data file.
+		\item (integer) The number of coordinates associated with the dimension (typically 1 for time, 2 for space, etc.).
+		\item (integer) The columns containing the coordinates, comma-separated.
+		\item (integer) The number of covariates associated with the dimension.
+		\item (string) The names of the covariates (comma-separated if several).
+		\item (integer) The columns containing the values of the covariates (comma-separated if several, 0 if no covariate).
+		\item (string) The function used to compute distances in the dimension. Only available at the moment: "Euclidean" or "Haversine" (for lon-lat coordinates). 
+		\item (integer) The number of parameters of the distance function. Not properly implemented yet, use 0.
+	\end{enumerate}
+	
+	\subsection{Process configuration file}
+	
+	There should be as many process configuration files as there are processes used in the model. A process configuration file contains the following lines:
+	
+	\begin{enumerate}
+		\item (string) A descriptive name for the process. Make sure that the name is consistent with the ones declared in line 15 of the model configuration file.
+		\item (string) The name of the dimension the process is defined on. Make sure it is consistent with the names declared in the dimension configuration files.
+		\item (integer) The constraint index. 0 means that the process is unconstrained; 1 means that the process is forced to have mean zero; 2 means that the process is forced to have mean zero and standard deviation one. Such constraints are necessary in some models to avoid non-identifiability. 
+		\item (real or string) Initial guess value for the process (will be used as a starting point for MCMC sampling). If a real number is provided, it is used as the initial guess for all values of the process (i.e. at every point of the corresponding dimension, i.e. at every site for a spatial process, every time step for a temporal process, etc.). If a string is provided, it should correspond to the name of a dimension covariate (as declared in line 9 of the dimension configuration file) which is then used as initial guess.
+		\item (string) The (hyper)-distribution of the process. Should be a multivariate distribution as listed in section \ref{mdistributions}.
+		\item (integer) The number of parameters used to specify the hyper-distribution.
+		\item (string) The name of each hyper-parameter (comma-separated if several). Make sure that the names are not already used elsewhere, otherwise an error will be thrown.
+		\item (integer) The number of scalar parameters nSpar: see explanations in section \ref{mdistributions}.
+		\item (integer) The indices of scalar parameters in the full parameter list of line 7 (size nSpar, comma-separated).
+		\item (string) The formula used to compute the vector parameter of the hyper-distribution (typically, the mean vector). It may depend on any of the hyper-parameters declared in line 7 and any covariate of the dimension. See section \ref{mdistributions} for more explanation.
+		\item (string) The formula used to compute the matrix parameter of the hyper-distribution (typically, the covariance matrix). It may depend on any of the hyper-parameters declared in line 7, on any covariate of the dimension and on pairwise distances of the dimension, noted Ddimname (e.g. Dspace, Dtime). See section \ref{mdistributions} for more explanation.		
+		\item For each hyper-parameter declared in line 7, a 4-line parameter block giving the name, initial guess, prior distribution and prior parameters as described in section \ref{config_par}.
+	\end{enumerate}
 	
 	\section{MCMC configuration file}
 	
+	 The MCMC configuration file should be named 'mcmc.config' and it contains the following lines:
+	
+	\begin{enumerate}
+		\item (integer) Nsim, the total number of MCMC iterations.
+		\item (integer) Nadapt, the adaptation period: jump sizes are increased/decreased every Nadapt iterations to comply with the desired moving rates.
+		\item (integer) stopAdapt: no more adaptation is performed after iteration number stopAdapt.
+		\item (integer) Nburn, the number of 'burnt' iterations that will not be written to file.
+		\item (integer) Nslim, the slimming factor: only one iteration every Nslim will be written to file.
+		\item (real) minMoveRate, the lower bound for the desired move rate interval.
+		\item (real) maxMoveRate, the upper bound for the desired move rate interval.
+		\item (real smaller than 1)  downMult, the multiplication factor used to decrease jump size when move rate is too low.
+		\item (real larger than 1)  upMult, the multiplication factor used to increase jump size when move rate is too high. Avoid using 1/dowMult otherwise the jump size will just oscillate between 2 values.
+		\item (string) The name of the MCMC result file (name of the file only, not full path).
+		\item (logical .true. or .false.) useSpeedUp, use computational tricks to optimize speed? Should always be .true., except if one wishes to verify the equivalence speedUp/no speedUp.
+		\item (string) The name of the file reporting MCMC jump sizes at each adaptation (name of the file only, not full path). No reporting if empty.
+		\item (string) The name of the file reporting MCMC move rates at each adaptation (name of the file only, not full path). No reporting if empty.
+	\end{enumerate}
+	
+	\section{Appendix}
+	
+	\subsection{Available distributions} \label{distributions}
+	
+	The table below gives the univariate distributions available in STooDs and their parameterization. Unless mentioned otherwise, Wikipedia's parameterizations are used.
+	
+	\begin{tabular}{|p{2.5cm}|p{7.5cm}|p{6cm}|}
+		\hline
+		\textbf{ID} & \textbf{Parameters}  & \textbf{Comments} \\
+		\hline
+		Gaussian & 2: mean and standard deviation  &  \\
+		\hline
+		Uniform & 2: lower and upper bound &  \\
+		\hline
+		Triangle & 3: peak, lower bound and upper bound  &  \\
+		\hline
+		LogNormal & 2: mean and standard deviation of log-variable &  \\
+		\hline
+		LogNormal3 & 3: threshold, mean of log-excesses and standard deviation of log-excesses  &  \\
+		\hline
+		Exponential & 2: threshold and scale & The scale is used rather than the rate \\
+		\hline
+		GPD & 3: threshold, scale and shape & Negative shape = left-bounded and heavy right tail \\
+		\hline
+		Gumbel & 2: location and scale &  \\
+		\hline
+		GEV & 3: location, scale and shape & Negative shape = left-bounded and heavy right tail \\
+		\hline
+		GEV\_min &  3: location, scale and shape & Positive shape = left-bounded and heavy right tail \\
+		\hline
+		Inverse\_Chi2 & 2: degrees of freedom and scale  &  It is a SCALED inverse chi-squared distribution \\
+		\hline
+		PearsonIII & 3: location, scale and shape  &  \\
+		\hline
+		Beta & 2: shape1, shape2 &  \\
+		\hline
+		Kumaraswamy & 2: shape1, shape2 &  \\
+		\hline
+		Geometric & 1: success probability & Support starts at one, not zero \\
+		\hline
+		Poisson & 1: rate &  \\
+		\hline
+		Bernoulli & 1: success probability &  \\
+		\hline
+		Binomial & 2: success probability and number of trials &  \\
+		\hline
+		NegBinomial & 2: success probability and number of failures &  \\
+		\hline
+		FlatPrior & 0 & Improper distribution: U[-$\infty$;+$\infty$] \\
+		\hline
+		FlatPrior+ & 0 & Improper distribution: U[0;+$\infty$] \\
+		\hline
+		FlatPrior- & 0 & Improper distribution: U[-$\infty$;0] \\
+		\hline
+		 FIX & 0 & Pseudo-distribution used to fix the value of a parameter at its initial guess \\
+		\hline
+	\end{tabular}
+	
+	\subsection{Available multivariate distributions} \label{mdistributions}
+	
+	Parameterization of multivariate distributions is more difficult than that of univariate distributions: it is not practical to stack all parameters into a vector. Consider for instance the symmetric covariance matrix of a multivariate Gaussian distribution and the many ways it can be flatten into a vector: this leaves too much room for confusion and error.
+	
+	Consequently, p-variate distributions in STooDs can use 3 types of parameters: 
+	\begin{enumerate}
+		\item scalar parameters such as the mean and the standard deviation of an IID multivariate Gaussian distribution, or the lag-1 autocorrelation coefficient of an AR(1) process.
+		\item a vector parameter of size p: typically, the mean vector.
+		\item a matrix parameter of size p*p: typically, the covariance matrix.
+	\end{enumerate}
+
+	The table below gives the univariate distributions available in STooDs and their parameterization.
+	
+	\begin{tabular}{|p{4cm}|p{6cm}|p{3cm}|p{3cm}|}
+		\hline
+		\textbf{ID} & \textbf{scalar parameters}  & \textbf{vector par.} & \textbf{matrix par.} \\
+		\hline
+		Gaussian\_IID & 2: mean and standard deviation  & 0 & 0 \\
+		\hline
+		Gaussian & 0  & 1: mean & 1: covariance \\
+		\hline
+		Gaussian\_AR1 & 3: constant, innovation st. dev. and lag-1 autocorrelation & 0 & 0 \\
+		\hline
+		Gaussian\_AR1\_vmean & 2: innovation st. dev. and lag-1 autocorrelation & 1: mean & 0 \\
+		\hline
+		NNGP (nearest-neighbour Gaussian process) & 1: number of neighbours & 1: mean & 1: covariance \\
+		\hline
+		Flat & 0 & 0 & 0 \\
+		\hline
+	\end{tabular}
+
 \end{document}
