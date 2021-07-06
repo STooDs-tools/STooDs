@@ -6,10 +6,16 @@ STooDs is a framework to build and estimate probabilistic models for data varyin
 2. Each variable in the dataset is assumed to follow a distribution whose parameters may vary along the same dimensions as the dataset.
 3. This variability is specified by regression formulas that may use parameters, covariates and processes.
 
-The current code is a computational engine and mostly aims at generating MCMC samples from the posterior distribution associated with the model. Further analyses such as exploring MCMC samples, making predictions or plotting results can be performed with other tools such as the R package [RSTooDs](https://github.com/STooDs-tools/RSTooDs). 
+Key properties of STooDs include:
+
+1. Possibility to model several random variables.
+2. Flexible choice of the distribution for each variable.
+3. Identifiability constraints enabling the use of 'hidden covariates' models (aka 'latent variables' or 'latent factors' models).
+4. Handling of censored data.
+5. Models adapted to large datasets are available (Nearest Neighbours Gaussian Process).
 
 ### Usage
-STooDs is implemented as an executable file controlled by a set of configuration text files. The easiest usage is to call STooDs at the command line by typing `./STooDs -wk "path/to/workspace/"` (Linux) or `STooDs -wk "path/to/workspace/"` (Windows), where the workspace is the folder containing all configuration files.
+The current code is a computational engine and mostly aims at generating MCMC samples from the posterior distribution associated with the model and the data. It is implemented as an executable file controlled by a set of configuration text files. The easiest usage is to call STooDs at the command line by typing `./STooDs -wk "path/to/workspace/"` (Linux) or `STooDs -wk "path/to/workspace/"` (Windows), where the workspace is the folder containing all configuration files. Further analyses such as exploring MCMC samples, making predictions or plotting results can be performed with other tools such as the R package [RSTooDs](https://github.com/STooDs-tools/RSTooDs). 
 
 ### Getting STooDs executable
 A recent STooDs executable for your system (Windows or Linux) can be downloaded [here](https://github.com/STooDs-tools/RSTooDs/tree/main/inst/bin).
