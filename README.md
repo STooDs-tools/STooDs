@@ -1,5 +1,7 @@
 # STooDs
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5075586.svg)](https://doi.org/10.5281/zenodo.5075586)
+
 STooDs is a framework to build and estimate probabilistic models for data varying in Space, Time or other Dimensions. A typical STooDs case study can be described as follows:
 
 1. The target dataset contains the values taken by one of several predictand variables varying along one or more dimensions.
