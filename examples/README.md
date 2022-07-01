@@ -44,9 +44,8 @@ and time $t$
 are assumed to be realizations from log-normal distributions, 
 parameter $\mu$ varies as a function of 
 the nino3.4 index $x_t$. 
-The parameters $\mu_{0,s}$, 
-$\mu_{1,s}$ and 
-$\sigma_s$ are all site-specific, but distinct prior distributions are used:
+The parameters $\mu_{0,s}, \mu_{1,s} \text{ and } \sigma_s$ 
+are all site-specific, but distinct prior distributions are used:
 
 1. For the parameters $\mu_{0,s} \text{ and } \sigma_s$, the same prior distributions as in previous example 2 are used.
 2. The parameters $\mu_{1,s}$, controling the effect of the El Niño, are assumed to be realizations from a Gaussian distribution with _unknown_ parameters *m* and *s*. Parameter *m* quantifies the overall El Niño effect in the region,  parameter *s* quantifies the spatial variability of this effect.
