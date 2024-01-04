@@ -1,4 +1,4 @@
-# STooDs
+# STooDs <a href=""><img src="goodies/logo.png" align="right" height="138" /></a>
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5075586.svg)](https://doi.org/10.5281/zenodo.5075586)
 
