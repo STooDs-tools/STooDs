@@ -32,57 +32,56 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="../../../BMSL/src/Distribution_tools.f90">
-			<Option weight="6" />
+			<Option weight="25" />
 		</Unit>
 		<Unit filename="../../../BMSL/src/EmpiricalStats_tools.f90">
-			<Option weight="5" />
+			<Option weight="23" />
 		</Unit>
 		<Unit filename="../../../BMSL/src/Geodesy_tools.f90">
-			<Option weight="1" />
+			<Option weight="21" />
 		</Unit>
 		<Unit filename="../../../BMSL/src/MultivariateDistribution_tools.f90">
-			<Option weight="5" />
+			<Option weight="27" />
 		</Unit>
 		<Unit filename="../../../BaM/src/Models/TextFile_model.f90">
-			<Option weight="3" />
+			<Option weight="31" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/kinds_dmsl_kit.f90">
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/linalg_dmsl_kit.f90">
+			<Option weight="5" />
+		</Unit>
+		<Unit filename="../../../miniDMSL/src/mt19937-64.f95">
 			<Option weight="3" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/numerix_dmsl_kit.f90">
-			<Option weight="4" />
+			<Option weight="6" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/types_dmsl_kit.f90">
 			<Option weight="1" />
 		</Unit>
-		<Unit filename="../../../miniDMSL/src/uniran1_dmsl_mod.f90">
-			<Option weight="1" />
+		<Unit filename="../../../miniDMSL/src/uniran1_minidmsl_mod.f90">
+			<Option weight="4" />
 		</Unit>
 		<Unit filename="../../../miniDMSL/src/utilities_dmsl_kit.f90">
 			<Option weight="2" />
 		</Unit>
 		<Unit filename="../../src/Main.f90">
-			<Option weight="11" />
+			<Option weight="100" />
 		</Unit>
 		<Unit filename="../../src/STOODS_formulas.f90">
-			<Option weight="8" />
+			<Option weight="53" />
 		</Unit>
 		<Unit filename="../../src/STOODS_inference.f90">
-			<Option weight="9" />
+			<Option weight="55" />
 		</Unit>
 		<Unit filename="../../src/STOODS_mcmc.f90">
-			<Option weight="10" />
+			<Option weight="57" />
 		</Unit>
 		<Unit filename="../../src/STOODS_types.f90">
-			<Option weight="7" />
+			<Option weight="51" />
 		</Unit>
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
