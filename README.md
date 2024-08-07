@@ -26,7 +26,7 @@ Alternatively, the executable can be recompiled from sources using the provided 
 
 1. [BMSL](https://github.com/benRenard/BMSL)
 2. [BaM](https://github.com/BaM-tools/BaM)
-3. miniDMSL (available soon!)
+3. [miniDMSL](https://github.com/benRenard/miniDMSL)
 
 ### Managing STooDs configuration files
 
